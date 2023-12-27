@@ -9,34 +9,14 @@ import Foundation
 import UIKit
 
 public extension UIEdgeInsets {
-	
-	init(by: CGFloat) {
-		self.init(top: by, left: by, bottom: by, right: by)
-	}
-	
-	init(vertical: CGFloat, horizontal: CGFloat) {
-		self.init(top: vertical, left: horizontal, bottom: vertical, right: horizontal)
-	}
     
-    static var appInsets: UIEdgeInsets {
-        return .init(vertical: .appVerticalPadding, horizontal: .appHorizontalPadding)
+    init(by: CGFloat) {
+        self.init(top: by, left: by, bottom: by, right: by)
     }
     
-    static var headerInsets: UIEdgeInsets {
-        return .init(top: .appVerticalPadding,
-                     left: .appHorizontalPadding,
-                     bottom: 7.5,
-                     right: .appHorizontalPadding)
+    init(vertical: CGFloat, horizontal: CGFloat) {
+        self.init(top: vertical, left: horizontal, bottom: vertical, right: horizontal)
     }
-}
-
-//MARK: - UIEdgeInset Constants
-public extension UIEdgeInsets {
-    
-    static let sheetInsets: UIEdgeInsets = .init(top: .appVerticalPadding,
-                                                 left: .appHorizontalPadding,
-                                                 bottom: .safeAreaInsets.bottom,
-                                                 right: .appHorizontalPadding)
 }
 
 //MARK: - NSDirectionEdgeInsets
@@ -48,16 +28,5 @@ public extension NSDirectionalEdgeInsets {
     
     init(vertical: CGFloat, horizontal: CGFloat) {
         self.init(top: vertical, leading: horizontal, bottom: vertical, trailing: horizontal)
-    }
-    
-    static var appInsets: NSDirectionalEdgeInsets {
-        return .init(vertical: 10, horizontal: .appHorizontalPadding)
-    }
-    
-    static var headerInsets: NSDirectionalEdgeInsets {
-        return .init(top: .appVerticalPadding,
-                     leading: .appHorizontalPadding,
-                     bottom: 7.5,
-                     trailing: .appHorizontalPadding)
     }
 }

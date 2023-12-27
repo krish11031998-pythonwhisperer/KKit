@@ -13,12 +13,6 @@ public extension UIApplication {
 	static var main: UIApplication? { UIApplication.value(forKeyPath: #keyPath(UIApplication.shared)) as? UIApplication }
 }
 
-//MARK: - App Padding
-public protocol AppPadding {
-    static var appHorizontalPadding: CGFloat { get }
-    static var appVerticalPadding: CGFloat { get }
-}
-
 public extension CGFloat {
 	
 	static var totalWidth: CGFloat { UIScreen.main.bounds.width }
@@ -45,12 +39,8 @@ public extension CGFloat {
 
 }
 
-extension CGFloat: AppPadding {
-    public static var appHorizontalPadding: CGFloat { 24 }
-    public static var appVerticalPadding: CGFloat { 16 }
-}
-
 //MARK: - CGFloat + ClosedRange
+
 public extension ClosedRange where Bound == CGFloat {
 	
 	func percent(_ val: CGFloat) -> CGFloat {
@@ -61,6 +51,7 @@ public extension ClosedRange where Bound == CGFloat {
 }
 
 //MARK: - CGFloat + Array
+
 public extension Array where Self.Element == CGFloat {
     func normalizeValues() -> [Self.Element] {
         guard let max = self.max(), let min = self.min() else { return self }
@@ -69,6 +60,7 @@ public extension Array where Self.Element == CGFloat {
 }
 
 //MARK: - CGFloat + CGRect
+
 public extension CGRect {
 	
 	var center: CGPoint {
