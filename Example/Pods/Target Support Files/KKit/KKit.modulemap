@@ -1,0 +1,6 @@
+framework module KKit {
+  umbrella header "KKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
