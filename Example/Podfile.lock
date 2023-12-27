@@ -1,0 +1,16 @@
+PODS:
+  - KKit (0.1.0)
+
+DEPENDENCIES:
+  - KKit (from `../`)
+
+EXTERNAL SOURCES:
+  KKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  KKit: d492179b400852003bfab25f95e09134f0909037
+
+PODFILE CHECKSUM: c9ed1ea104f2a9cb68ed51604b0f527dd84c4b5f
+
+COCOAPODS: 1.12.1
