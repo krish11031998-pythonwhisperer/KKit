@@ -22,7 +22,7 @@ pod 'KKit'
 
 ## Author
 
-56647167, krishna@getbaraka.com
+krish11031998-pythonwhisperer, krish_venkat11@hotmail.com
 
 ## License
 
