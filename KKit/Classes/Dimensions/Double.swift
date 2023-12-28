@@ -9,7 +9,7 @@ import Foundation
 
 //MARK: - Array + Double
 
-extension Array where Self.Element == Double {
+public extension Array where Self.Element == Double {
     func normalize() -> [Self.Element] {
         guard let max = self.max(), let min = self.min() else { return self }
         return map { ($0 - min)/(max - min) }

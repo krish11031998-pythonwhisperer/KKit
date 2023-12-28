@@ -11,7 +11,7 @@ import UIKit
 //MARK: - CGPoint
 
 
-extension CGPoint {
+public extension CGPoint {
     
     enum Direction: String {
         case left, right, top, bottom, none
@@ -43,7 +43,7 @@ extension CGPoint {
 
 //MARK: - Array + CGPoint
 
-extension Array where Self.Element == CGPoint {
+public extension Array where Self.Element == CGPoint {
     
     func findClosestPoint(point: CGPoint) -> CGPoint {
         var min: CGFloat = .greatestFiniteMagnitude
