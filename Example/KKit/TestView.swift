@@ -9,7 +9,11 @@
 import UIKit
 import KKit
 
-class TestView: UIView {
+class TestView: UIView, ConfigurableViewElement {
+    
+    struct TestModel {
+        public init() {}
+    }
     
     private var largeViewWidthConstraint: NSLayoutConstraint!
     private var secondLargeViewHeightConstraint: NSLayoutConstraint!
@@ -66,9 +70,12 @@ class TestView: UIView {
             .pinTrailingAnchorTo(constant: 0)
             .pinBottomAnchorTo(constant: 0)
         
-        largeViewWidthConstraint = largeSimpleView.setWidth(width: 100)
-        secondLargeViewHeightConstraint = secondLargeSimpleView.setHeight(height: 100)
+        largeViewWidthConstraint = largeSimpleView.setWidth(width: 0)
+        secondLargeViewHeightConstraint = secondLargeSimpleView.setHeight(height: 0)
             
+    }
+    
+    func configure(with model: TestModel) {
     }
 }
 

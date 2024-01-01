@@ -44,15 +44,8 @@ public extension UIView {
         let blur = UIBlurEffect(style: style)
         let blurView = UIVisualEffectView(effect: blur)
         addSubview(blurView)
-        setFittingConstraints(childView: blurView, insets: .zero)
+        blurView.fillSuperview()
         sendSubviewToBack(blurView)
-    }
-    
-    func addShadow(color: UIColor = .white){
-        self.layer.shadowColor = color.cgColor
-        self.layer.shadowOpacity = userInterface == .dark ? 0.2 : 0.2
-        self.layer.shadowOffset = .zero
-        self.layer.shadowRadius = 2
     }
     
     func add3DShadow(size: CGSize = .init(width: 1, height: 1),
@@ -67,11 +60,11 @@ public extension UIView {
     
     func addShadowBackground(inset: UIEdgeInsets = .zero, cornerRadius: CGFloat = 8) {
         let view = UIView()
-        view.addShadow()
+        view.addShadow(for: .small)
         view.border(color: .clear, borderWidth: 1, cornerRadius: cornerRadius)
         addSubview(view)
         sendSubviewToBack(view)
-        setFittingConstraints(childView: view, insets: inset)
+        view.fillSuperview()
     }
 }
 

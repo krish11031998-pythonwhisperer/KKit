@@ -25,6 +25,9 @@ public extension UIView {
         return self
     }
     
+    
+    // MARK: - Constraint Based
+    
     @discardableResult
     func pinTopAnchorTo(_ view: UIView? = nil, anchor: KeyPath<UIView,YAnchor> = \.topAnchor, constant: CGFloat) -> UIView {
         guard let viewToPinTo = view ?? superview else { return self }
@@ -86,6 +89,50 @@ public extension UIView {
     }
     
     @discardableResult
+    func pinHorizontalAnchorsTo(_ view: UIView? = nil, leadingAnchorConstant: CGFloat, trailingAnchorConstant: CGFloat) -> UIView {
+        guard let viewToPinTo = view ?? superview else { return self }
+        self.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [ self.leadingAnchor.constraint(equalTo: viewToPinTo.leadingAnchor, constant: leadingAnchorConstant),
+                            self.trailingAnchor.constraint(equalTo: viewToPinTo.trailingAnchor, constant: -trailingAnchorConstant)]
+        removeSimilarConstraints(constraints)
+        NSLayoutConstraint.activate(constraints)
+        return self
+    }
+    
+    @discardableResult
+    func pinHorizontalAnchorsTo(_ view: UIView? = nil, constant: CGFloat) -> UIView {
+        pinHorizontalAnchorsTo(view, leadingAnchorConstant: constant, trailingAnchorConstant: constant)
+    }
+    
+    @discardableResult
+    func pinVerticalAnchorsTo(_ view: UIView? = nil, topAnchorConstant: CGFloat, bottomAnchorConstant: CGFloat) -> UIView {
+        guard let viewToPinTo = view ?? superview else { return self }
+        self.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [ self.topAnchor.constraint(equalTo: viewToPinTo.topAnchor, constant: topAnchorConstant),  self.bottomAnchor.constraint(equalTo: viewToPinTo.bottomAnchor, constant: -bottomAnchorConstant)]
+        removeSimilarConstraints(constraints)
+        NSLayoutConstraint.activate(constraints)
+        return self
+    }
+    
+    @discardableResult
+    func pinVerticalAnchorsTo(_ view: UIView? = nil, constant: CGFloat) -> UIView {
+        pinVerticalAnchorsTo(view, topAnchorConstant: constant, bottomAnchorConstant: constant)
+    }
+    
+    
+    @discardableResult
+    func pinAllAnchors(_ view: UIView? = nil, insets: UIEdgeInsets) -> UIView {
+        self
+            .pinHorizontalAnchorsTo(view, leadingAnchorConstant: insets.left, trailingAnchorConstant: insets.right)
+            .pinVerticalAnchorsTo(view, topAnchorConstant: insets.top, bottomAnchorConstant: insets.bottom)
+    }
+    
+    @discardableResult
+    func pinAllAnchors(_ view: UIView? = nil, constant: CGFloat = 0) -> UIView {
+        pinAllAnchors(view, insets: .init(by: constant))
+    }
+    
+    @discardableResult
     func setWidthOfView(width: CGFloat, priority: UILayoutPriority = .required) -> UIView {
         let _ = self.setWidth(width: width, priority: priority)
         return self
@@ -97,6 +144,34 @@ public extension UIView {
         return self
     }
     
+    @discardableResult
+    func background(_ view: () -> UIView) -> UIView {
+        let backgroundView = view()
+        let newView = UIView()
+        addSubview(self)
+        addSubview(backgroundView)
+        sendSubviewToBack(backgroundView)
+        return newView
+    }
+    
+    @discardableResult
+    func background(_ view: UIView) -> UIView {
+        background { view }
+    }
+    
+    @discardableResult
+    func overlay(_ view: () -> UIView) -> UIView {
+        let overlayView = view()
+        let newView = UIView()
+        addSubview(self)
+        addSubview(overlayView)
+        return newView
+    }
+    
+    @discardableResult
+    func overlay(_ view: UIView) -> UIView {
+        overlay { view }
+    }
     
     var leadingConstraint: NSLayoutConstraint {
         constraints.filter { $0.firstAnchor == leadingAnchor }.first ?? .init()
