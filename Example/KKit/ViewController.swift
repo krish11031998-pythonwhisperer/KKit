@@ -8,17 +8,21 @@
 
 import UIKit
 import KKit
+import Combine
 
 class ViewController: UIViewController {
 
     private lazy var collectionView: UICollectionView = { .init(frame: .zero, collectionViewLayout: .init()) }()
-    private var count: Int = 3
+    @Published private var firstSectionCount: Int = 3
+    @Published private var secondSectionCount: Int = 3
+    @Published private var thirdSectionCount: Int = 3
+    private var bag: Set<AnyCancellable> = .init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         setupView()
         loadCollection()
+        setupObservers()
     }
     private func setupView() {
         view.addSubview(collectionView)
@@ -26,29 +30,71 @@ class ViewController: UIViewController {
             .pinAllAnchors()
     }
     
+    private func setupObservers() {
+        Publishers.MergeMany($firstSectionCount.dropFirst(1), $secondSectionCount.dropFirst(1), $thirdSectionCount.dropFirst(1))
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] count in
+                self?.loadCollection()
+            }
+            .store(in: &bag)
+    }
+    
     private func loadCollection() {
         
-        let size: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(100))
+        // TestCell Section
         
-        let item = NSCollectionLayoutItem(layoutSize: size)
+        typealias TestCell = CollectionCellBuilder<TestView>
         
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: size, subitems: [item])
+        let cells = Array(0..<firstSectionCount).map{ DiffableCollectionItem<TestCell>(.init(model: .init(section: 0, item: $0))) }
         
-        let layoutSection = NSCollectionLayoutSection(group: group)
+        //let cells = firstSectionCells.map{ DiffableCollectionItem<TestCell>(.init(model: $0)) }
         
-        layoutSection.contentInsets = .init(by: 10)
+        collectionView.register(TestCell.self, forCellWithReuseIdentifier: TestCell.cellName)
         
-        layoutSection.interGroupSpacing = 8
+        let firstSectionLayout: NSCollectionLayoutSection = .singleColumnLayout(width: .fractionalWidth(1.0), height: .absolute(100)).addHeader(size: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)))
+     
+        let header = CollectionSupplementaryView<SectionHeader>(.init(name: "First Section", action: { [weak self] in
+            self?.firstSectionCount += 1
+        }))
         
-        typealias Cell = CollectionCellBuilder<TestView>
+        let firstSection = DiffableCollectionSection(cells: cells, header: header, sectionLayout: firstSectionLayout)
         
-        let cells = Array(0..<count).map{ _ in DiffableCollectionItem<Cell>(.init(model: .init())) }
+//        collectionView.reloadWithDynamicSection(sections: [firstSection])
+
         
-        collectionView.register(Cell.self, forCellWithReuseIdentifier: Cell.cellName)
+        typealias TestSwiftUICell = CollectionCellBuilder<TestSwiftUIView>
         
-        let section = DiffableCollectionSection(cells: cells, sectionLayout: layoutSection)
+        let secondSectionLayout: NSCollectionLayoutSection = .singleColumnLayout(width: .fractionalWidth(1), height: .estimated(64)).addHeader(size: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)))
         
-        collectionView.reloadWithDynamicSection(sections: [section])
+        let sectionTwoCells = Array(0..<secondSectionCount).map{ DiffableCollectionItem<TestSwiftUICell>(.init(model: .init(section: 1, item: $0))) }
+        
+        let secondSectionHeader = CollectionSupplementaryView<SectionHeader>(.init(name: "Second Section", action: { [weak self] in
+            self?.secondSectionCount += 1
+        }))
+        
+        collectionView.register(TestSwiftUICell.self, forCellWithReuseIdentifier: TestSwiftUICell.cellName)
+        
+        let secondSection = DiffableCollectionSection(cells: sectionTwoCells, header: secondSectionHeader, sectionLayout: secondSectionLayout)
+        
+
+//        // TestSwiftUICell
+    
+        typealias CardCell = CollectionCellBuilder<CardView>
+        
+        let sectionThreeCells = Array(0..<thirdSectionCount).map{ DiffableCollectionItem<CardCell>(.init(model: .init(section: 2, item: $0))) }
+        
+        let thirdSectionLayout: NSCollectionLayoutSection = .singleRowLayout(width: .absolute(200), height: .absolute(250)).addHeader(size: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)))
+        
+        collectionView.register(CardCell.self, forCellWithReuseIdentifier: CardCell.cellName)
+        
+        let thirdSectionHeader = CollectionSupplementaryView<SectionHeader>(.init(name: "Second Section", action: { [weak self] in
+            self?.thirdSectionCount += 1
+        }))
+        
+        let thirdSection = DiffableCollectionSection(cells: sectionThreeCells, header: thirdSectionHeader, sectionLayout: thirdSectionLayout)
+        
+        
+        collectionView.reloadWithDynamicSection(sections: [firstSection, secondSection, thirdSection])
     }
 }
 

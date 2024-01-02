@@ -16,6 +16,9 @@
 		676F6302B29BC7BF2E33C359 /* Pods_KKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C26F5C57D06FE2E98031B07 /* Pods_KKit_Example.framework */; };
 		ABA21D6E541D6ABA644CBEAD /* Pods_KKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E287C699FCBCE1C5EA05496 /* Pods_KKit_Tests.framework */; };
 		EF43807E2B3C5895001D3616 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF43807D2B3C5895001D3616 /* TestView.swift */; };
+		EF81DB632B42D7CE0068E16F /* TestSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB622B42D7CE0068E16F /* TestSwiftUIView.swift */; };
+		EF81DB6A2B42E1040068E16F /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB692B42E1040068E16F /* CardView.swift */; };
+		EF81DB6E2B42EC2B0068E16F /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB6D2B42EC2B0068E16F /* SectionHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,9 @@
 		DCD16FC2C85F6AC65B02D160 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		E4981A3C319926DDEA9EEC37 /* KKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = KKit.podspec; path = ../KKit.podspec; sourceTree = "<group>"; };
 		EF43807D2B3C5895001D3616 /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		EF81DB622B42D7CE0068E16F /* TestSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSwiftUIView.swift; sourceTree = "<group>"; };
+		EF81DB692B42E1040068E16F /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		EF81DB6D2B42EC2B0068E16F /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		F9CC2A3934223DC764A8F731 /* Pods-KKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKit_Example.release.xcconfig"; path = "Target Support Files/Pods-KKit_Example/Pods-KKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +121,7 @@
 		607FACD21AFB9204008FA782 /* Example for KKit */ = {
 			isa = PBXGroup;
 			children = (
+				EF81DB622B42D7CE0068E16F /* TestSwiftUIView.swift */,
 				EF43807D2B3C5895001D3616 /* TestView.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
@@ -122,6 +129,8 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				EF81DB692B42E1040068E16F /* CardView.swift */,
+				EF81DB6D2B42EC2B0068E16F /* SectionHeader.swift */,
 			);
 			name = "Example for KKit";
 			path = KKit;
@@ -336,7 +345,10 @@
 			files = (
 				EF43807E2B3C5895001D3616 /* TestView.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				EF81DB6E2B42EC2B0068E16F /* SectionHeader.swift in Sources */,
+				EF81DB632B42D7CE0068E16F /* TestSwiftUIView.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				EF81DB6A2B42E1040068E16F /* CardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

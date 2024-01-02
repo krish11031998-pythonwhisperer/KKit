@@ -41,8 +41,15 @@
 		EF81DB512B3EDBCB0068E16F /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB502B3EDBCB0068E16F /* Object.swift */; };
 		EF81DB532B3EDC6C0068E16F /* DiffableConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB522B3EDC6C0068E16F /* DiffableConfigurable.swift */; };
 		EF81DB552B3EDCBF0068E16F /* DiffableCollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB542B3EDCBF0068E16F /* DiffableCollectionSection.swift */; };
-		EF81DB582B3EFB8F0068E16F /* ConfigurableViewElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB572B3EFB8F0068E16F /* ConfigurableViewElement.swift */; };
+		EF81DB582B3EFB8F0068E16F /* CollectionCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB572B3EFB8F0068E16F /* CollectionCellBuilder.swift */; };
 		EF81DB5A2B3EFFF10068E16F /* CollectionViewFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB592B3EFFF10068E16F /* CollectionViewFunctions.swift */; };
+		EF81DB5C2B424D640068E16F /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB5B2B424D640068E16F /* ConfigurableView.swift */; };
+		EF81DB5F2B424EB10068E16F /* ConfigurableUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB5E2B424EB10068E16F /* ConfigurableUIView.swift */; };
+		EF81DB612B42502F0068E16F /* ConfigurableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB602B42502F0068E16F /* ConfigurableElement.swift */; };
+		EF81DB662B42E01F0068E16F /* SingleColumnLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB652B42E01F0068E16F /* SingleColumnLayout.swift */; };
+		EF81DB682B42E09D0068E16F /* SingleRowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB672B42E09D0068E16F /* SingleRowLayout.swift */; };
+		EF81DB6C2B42E7760068E16F /* DiffableCollectionSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB6B2B42E7760068E16F /* DiffableCollectionSupplementaryView.swift */; };
+		EF81DB702B44ACC90068E16F /* NSLayoutSection+SupplementaryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB6F2B44ACC90068E16F /* NSLayoutSection+SupplementaryItems.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,8 +126,15 @@
 		EF81DB502B3EDBCB0068E16F /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		EF81DB522B3EDC6C0068E16F /* DiffableConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableConfigurable.swift; sourceTree = "<group>"; };
 		EF81DB542B3EDCBF0068E16F /* DiffableCollectionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableCollectionSection.swift; sourceTree = "<group>"; };
-		EF81DB572B3EFB8F0068E16F /* ConfigurableViewElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableViewElement.swift; sourceTree = "<group>"; };
+		EF81DB572B3EFB8F0068E16F /* CollectionCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellBuilder.swift; sourceTree = "<group>"; };
 		EF81DB592B3EFFF10068E16F /* CollectionViewFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewFunctions.swift; sourceTree = "<group>"; };
+		EF81DB5B2B424D640068E16F /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
+		EF81DB5E2B424EB10068E16F /* ConfigurableUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableUIView.swift; sourceTree = "<group>"; };
+		EF81DB602B42502F0068E16F /* ConfigurableElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableElement.swift; sourceTree = "<group>"; };
+		EF81DB652B42E01F0068E16F /* SingleColumnLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleColumnLayout.swift; sourceTree = "<group>"; };
+		EF81DB672B42E09D0068E16F /* SingleRowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleRowLayout.swift; sourceTree = "<group>"; };
+		EF81DB6B2B42E7760068E16F /* DiffableCollectionSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableCollectionSupplementaryView.swift; sourceTree = "<group>"; };
+		EF81DB6F2B44ACC90068E16F /* NSLayoutSection+SupplementaryItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutSection+SupplementaryItems.swift"; sourceTree = "<group>"; };
 		F16E2852D9A84951CE510C142CEB75C3 /* Pods-KKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,6 +179,7 @@
 		1E128F5123F19BA261EA5436181A81EA /* KKit */ = {
 			isa = PBXGroup;
 			children = (
+				EF81DB642B42E0080068E16F /* CollectionLayouts */,
 				EF81DB562B3EFB7C0068E16F /* CollectionView */,
 				EF81DB4D2B3EDB490068E16F /* DiffableCollectionDataSource */,
 				EF4380512B3C5851001D3616 /* Dimensions */,
@@ -319,6 +334,7 @@
 		EF43805D2B3C5851001D3616 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
+				EF81DB5D2B424E840068E16F /* Configurable */,
 				EF43805E2B3C5851001D3616 /* UIView+Styling.swift */,
 				EF43805F2B3C5851001D3616 /* UIView+General.swift */,
 				EF4380602B3C5851001D3616 /* UIView+Helpers.swift */,
@@ -348,6 +364,7 @@
 				EF81DB4E2B3EDBAA0068E16F /* DiffableCollectionItem.swift */,
 				EF81DB522B3EDC6C0068E16F /* DiffableConfigurable.swift */,
 				EF81DB542B3EDCBF0068E16F /* DiffableCollectionSection.swift */,
+				EF81DB6B2B42E7760068E16F /* DiffableCollectionSupplementaryView.swift */,
 			);
 			path = DiffableCollectionDataSource;
 			sourceTree = "<group>";
@@ -355,10 +372,30 @@
 		EF81DB562B3EFB7C0068E16F /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				EF81DB572B3EFB8F0068E16F /* ConfigurableViewElement.swift */,
+				EF81DB572B3EFB8F0068E16F /* CollectionCellBuilder.swift */,
 				EF81DB592B3EFFF10068E16F /* CollectionViewFunctions.swift */,
 			);
 			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		EF81DB5D2B424E840068E16F /* Configurable */ = {
+			isa = PBXGroup;
+			children = (
+				EF81DB5B2B424D640068E16F /* ConfigurableView.swift */,
+				EF81DB5E2B424EB10068E16F /* ConfigurableUIView.swift */,
+				EF81DB602B42502F0068E16F /* ConfigurableElement.swift */,
+			);
+			path = Configurable;
+			sourceTree = "<group>";
+		};
+		EF81DB642B42E0080068E16F /* CollectionLayouts */ = {
+			isa = PBXGroup;
+			children = (
+				EF81DB652B42E01F0068E16F /* SingleColumnLayout.swift */,
+				EF81DB672B42E09D0068E16F /* SingleRowLayout.swift */,
+				EF81DB6F2B44ACC90068E16F /* NSLayoutSection+SupplementaryItems.swift */,
+			);
+			path = CollectionLayouts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -522,7 +559,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF4380752B3C5851001D3616 /* UIView+Helpers.swift in Sources */,
+				EF81DB662B42E01F0068E16F /* SingleColumnLayout.swift in Sources */,
 				EF4380722B3C5851001D3616 /* RenderableText.swift in Sources */,
+				EF81DB6C2B42E7760068E16F /* DiffableCollectionSupplementaryView.swift in Sources */,
 				EF4380772B3C5851001D3616 /* UIView+Gesture.swift in Sources */,
 				EF4380762B3C5851001D3616 /* UIView+Builders.swift in Sources */,
 				EF81DB5A2B3EFFF10068E16F /* CollectionViewFunctions.swift in Sources */,
@@ -530,13 +569,17 @@
 				EF4380692B3C5851001D3616 /* Callback.swift in Sources */,
 				EF4380782B3C5851001D3616 /* UIView+GraphicRenderer.swift in Sources */,
 				EF43807B2B3C5851001D3616 /* UIStackView.swift in Sources */,
+				EF81DB5C2B424D640068E16F /* ConfigurableView.swift in Sources */,
 				EF43806A2B3C5851001D3616 /* CGSize.swift in Sources */,
 				EF43807A2B3C5851001D3616 /* StackView.swift in Sources */,
 				EF4380702B3C5851001D3616 /* CustomFonts.swift in Sources */,
 				20FC31F3D63A416ED719C38F11A6514B /* KKit-dummy.m in Sources */,
+				EF81DB682B42E09D0068E16F /* SingleRowLayout.swift in Sources */,
 				EF43807C2B3C5851001D3616 /* ViewHeiarchy.swift in Sources */,
+				EF81DB702B44ACC90068E16F /* NSLayoutSection+SupplementaryItems.swift in Sources */,
+				EF81DB5F2B424EB10068E16F /* ConfigurableUIView.swift in Sources */,
 				EF4380712B3C5851001D3616 /* NSAttributedString+Utils.swift in Sources */,
-				EF81DB582B3EFB8F0068E16F /* ConfigurableViewElement.swift in Sources */,
+				EF81DB582B3EFB8F0068E16F /* CollectionCellBuilder.swift in Sources */,
 				EF43806C2B3C5851001D3616 /* CGPoint.swift in Sources */,
 				EF81DB532B3EDC6C0068E16F /* DiffableConfigurable.swift in Sources */,
 				EF43806B2B3C5851001D3616 /* Int.swift in Sources */,
@@ -544,6 +587,7 @@
 				EF4380792B3C5851001D3616 /* UIView+Array.swift in Sources */,
 				EF43806F2B3C5851001D3616 /* UIEdgeInsets.swift in Sources */,
 				EF4380742B3C5851001D3616 /* UIView+General.swift in Sources */,
+				EF81DB612B42502F0068E16F /* ConfigurableElement.swift in Sources */,
 				EF4380832B3C6374001D3616 /* Double.swift in Sources */,
 				EF43806E2B3C5851001D3616 /* CGRect.swift in Sources */,
 				EF81DB512B3EDBCB0068E16F /* Object.swift in Sources */,

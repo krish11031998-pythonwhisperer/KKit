@@ -7,6 +7,6 @@
 
 import Foundation
 
-extension NSObject {
+public extension NSObject {
     static var name: String { "\(self)" }
 }

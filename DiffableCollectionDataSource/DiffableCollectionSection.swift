@@ -14,9 +14,13 @@ public class DiffableCollectionSection {
     var id: String
     let cells: [any DiffableCollectionCellProvider]
     let sectionLayout: NSCollectionLayoutSection
+    let header: CollectionViewSupplementaryViewProvider?
+    let footer: CollectionViewSupplementaryViewProvider?
     
-    public init(cells: [any DiffableCollectionCellProvider], sectionLayout: NSCollectionLayoutSection) {
+    public init(cells: [any DiffableCollectionCellProvider], header: CollectionViewSupplementaryViewProvider? = nil, footer: CollectionViewSupplementaryViewProvider? = nil, sectionLayout: NSCollectionLayoutSection) {
         self.cells = cells
+        self.header = header
+        self.footer = footer
         self.id = UUID().uuidString
         self.sectionLayout = sectionLayout
     }
@@ -43,6 +47,10 @@ public extension UICollectionView {
             return
         }
         
+        sections.enumerated().forEach { section  in
+            section.element.header?.registerReusableView(self, kind: UICollectionView.elementKindSectionHeader, indexPath: .init(item: 0, section: section.offset))
+        }
+        
         let dataSource = DiffableCollectionDiffableDataSource(collectionView: self) { collectionView, indexPath, item in
             guard case .item(let cellItem) = item else {
                 return UICollectionViewCell()
@@ -51,6 +59,17 @@ public extension UICollectionView {
             return cellItem.cell(cv: collectionView, indexPath: indexPath)
         }
         
+        dataSource.supplementaryViewProvider = ({ cv, kind, index in
+            switch kind {
+            case UICollectionView.elementKindSectionHeader:
+                return sections[index.section].header?.dequeueReusableView(cv, kind: kind, indexPath: index)
+            case UICollectionView.elementKindSectionFooter:
+                return sections[index.section].footer?.dequeueReusableView(cv, kind: kind, indexPath: index)
+            default:
+                return nil
+            }
+        })
+            
         self.dynamicDataSource = dataSource
         setupCollectionViewLayout(dynamicSections: sections)
         self.apply(diffableSections: sections)
@@ -64,6 +83,7 @@ public extension UICollectionView {
             snapshot.appendItems(section.element.asItem,
                                  toSection: section.offset)
         }
+        
         dynamicDataSource?.apply(snapshot, animatingDifferences: true)
     }
     

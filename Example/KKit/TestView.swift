@@ -9,11 +9,18 @@
 import UIKit
 import KKit
 
-class TestView: UIView, ConfigurableViewElement {
-    
-    struct TestModel {
-        public init() {}
+struct TestHashableModel: Hashable {
+    let section: Int
+    let item: Int
+    let id: Int
+    public init(section: Int, item: Int) {
+        self.id = item + section * 10
+        self.section = section
+        self.item = item
     }
+}
+
+class TestView: ConfigurableUIView {
     
     private var largeViewWidthConstraint: NSLayoutConstraint!
     private var secondLargeViewHeightConstraint: NSLayoutConstraint!
@@ -72,11 +79,15 @@ class TestView: UIView, ConfigurableViewElement {
         
         largeViewWidthConstraint = largeSimpleView.setWidth(width: 0)
         secondLargeViewHeightConstraint = secondLargeSimpleView.setHeight(height: 0)
-            
+        
+    }
+        
+    static func createContent(with model: TestHashableModel) -> UIContentConfiguration {
+        let view = TestView()
+        return UIViewConfiguration(view: view)
     }
     
-    func configure(with model: TestModel) {
-    }
+    static var viewName: String { name }
 }
 
 @available(iOS 17.0, *)
