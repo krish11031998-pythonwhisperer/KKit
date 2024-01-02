@@ -47,6 +47,7 @@ struct CardView: ConfigurableView {
     static var viewName: String { "CardView" }
 }
 
+typealias CardCell = CollectionCellBuilder<CardView>
 
 #Preview {
     CardView(model: .init(section: 0, item: 0))

@@ -47,6 +47,8 @@ struct TestSwiftUIView: ConfigurableView {
     static var viewName: String { "TestSwiftUIView" }
 }
 
+typealias TestSwiftUICell = CollectionCellBuilder<TestSwiftUIView>
+
 #Preview {
     TestSwiftUIView(model: .init(section: 0, item: 0))
         .padding(.all, 16)

@@ -90,6 +90,8 @@ class TestView: ConfigurableUIView {
     static var viewName: String { name }
 }
 
+typealias TestCell = CollectionCellBuilder<TestView>
+
 @available(iOS 17.0, *)
 #Preview("Test", traits: .fixedLayout(width: 300, height: 500), body: {
     let view = TestView()
