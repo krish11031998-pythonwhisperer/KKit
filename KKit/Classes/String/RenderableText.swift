@@ -131,17 +131,17 @@ extension NSAttributedString: RenderableText {
 
 // MARK: - RenderableText + SwiftUI.Text
 
-public extension RenderableText where Self == NSAttributedString {
-    func asText() -> Text {
-        let attributed: AttributedString = .init(self)
-        return Text(attributed)
-    }
-}
-
-public extension RenderableText where Self == String {
+public extension RenderableText {
     func asText(font: UIFont = .systemFont(ofSize: 12, weight: .medium)) -> Text {
-        Text(self)
-            .font(Font(font))
+        switch self {
+        case let str as String:
+            Text(str)
+                .font(Font(font))
+        case let nsAtr as NSAttributedString:
+            Text(.init(nsAtr))
+        default:
+            Text("")
+        }
     }
 }
 
