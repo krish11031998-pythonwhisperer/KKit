@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 public protocol RenderableText {
 	
@@ -126,6 +127,22 @@ extension NSAttributedString: RenderableText {
 		}
 	}
 	
+}
+
+// MARK: - RenderableText + SwiftUI.Text
+
+public extension RenderableText where Self == NSAttributedString {
+    func asText() -> Text {
+        let attributed: AttributedString = .init(self)
+        return Text(attributed)
+    }
+}
+
+public extension RenderableText where Self == String {
+    func asText(font: UIFont = .systemFont(ofSize: 12, weight: .medium)) -> Text {
+        Text(self)
+            .font(Font(font))
+    }
 }
 
 //MARK: - Renderable+Dimension
