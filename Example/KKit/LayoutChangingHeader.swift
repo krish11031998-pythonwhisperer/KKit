@@ -1,25 +1,30 @@
 //
-//  SectionHeader.swift
+//  LayoutChangingHeader.swift
 //  KKit_Example
 //
-//  Created by Krishna Venkatramani on 01/01/2024.
+//  Created by Krishna Venkatramani on 12/01/2024.
 //  Copyright © 2024 CocoaPods. All rights reserved.
 //
 
 import UIKit
 import KKit
 
-class SectionHeader: UICollectionReusableView, ConfigurableCollectionSupplementaryView {
+class LayoutChangingSectionHeader: UICollectionReusableView, ConfigurableCollectionSupplementaryView {
+    
+    enum Layout {
+        case column, row
+    }
     
     private lazy var headerLabel: UILabel = { .init() }()
     private lazy var addButton: UIButton = { .init() }()
-    private var action: Callback?
+    private var action: ((Layout) -> Void)?
+    private var currentLayout: Layout = .row
     
     struct Model: Hashable {
         let name: String
-        let action: Callback
+        let action: ((Layout) -> Void)?
         
-        static func == (lhs: SectionHeader.Model, rhs: SectionHeader.Model) -> Bool {
+        static func == (lhs: LayoutChangingSectionHeader.Model, rhs: LayoutChangingSectionHeader.Model) -> Bool {
             lhs.name == rhs.name
         }
         
@@ -53,7 +58,8 @@ class SectionHeader: UICollectionReusableView, ConfigurableCollectionSupplementa
     @objc
     func onTap() {
         print("(DEBUG) Clicked on add!")
-        action?()
+        currentLayout = currentLayout == .column ? .row : .column
+        action?(currentLayout)
     }
     
     func configure(with model: Model) {
@@ -61,3 +67,4 @@ class SectionHeader: UICollectionReusableView, ConfigurableCollectionSupplementa
         action = model.action
     }
 }
+

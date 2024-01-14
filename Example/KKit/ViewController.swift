@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         
         // TestCell Section
         collectionView.register(TestCell.self, forCellWithReuseIdentifier: TestCell.cellName)
-        collectionView.register(TestSwiftUICell.self, forCellWithReuseIdentifier: TestSwiftUICell.cellName)
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.register(CardCell.self, forCellWithReuseIdentifier: CardCell.cellName)
         
     }
@@ -40,6 +40,7 @@ class ViewController: UIViewController {
     private func setupObservers() {
         
         viewModel.transform().section
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] sections in
                 self?.collectionView.reloadWithDynamicSection(sections: sections)
             }

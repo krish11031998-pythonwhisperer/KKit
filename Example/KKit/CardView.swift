@@ -24,7 +24,8 @@ struct CardView: ConfigurableView {
                 .scaledToFit()
                 .frame(width: 24, height: 24, alignment: .center)
             Text("Hello")
-            Spacer()
+                .frame(maxHeight: .infinity, alignment: .topLeading)
+            //Spacer()
             Image(systemName: "plus")
                 .resizable()
                 .scaledToFit()
@@ -32,7 +33,7 @@ struct CardView: ConfigurableView {
         }
         .padding(.all, 16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background { Color.white }
+        .background { Color.red }
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 0)
     }

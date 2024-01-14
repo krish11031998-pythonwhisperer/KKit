@@ -17,5 +17,29 @@ extension UICollectionView {
         
         return cell
     }
-    
 }
+
+// MARK: - UICollectionView
+
+public extension UICollectionView {
+    
+    static var dynamicDataSourceObject: [UICollectionView:DataSource] = [:]
+    
+    var dynamicDataSource: DataSource? {
+        get { Self.dynamicDataSourceObject[self] }
+        set { Self.dynamicDataSourceObject[self] = newValue }
+    }
+    
+    
+    func reloadWithDynamicSection(sections: [DiffableCollectionSection]) {
+        
+        if let source = self.dynamicDataSource {
+            source.reloadSections(collection: self, sections)
+            return
+        }
+        
+        self.dynamicDataSource = DataSource(sections: sections)
+        dynamicDataSource!.initializeDiffableDataSource(with: self)
+    }
+}
+

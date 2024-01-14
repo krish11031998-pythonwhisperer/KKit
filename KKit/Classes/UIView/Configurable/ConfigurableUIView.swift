@@ -26,5 +26,3 @@ public extension ConfigurableUIViewProvider {
 // MARK: - ConfigurableUIView
 
 public typealias ConfigurableUIView = ConfigurableElement & UIView
-
-

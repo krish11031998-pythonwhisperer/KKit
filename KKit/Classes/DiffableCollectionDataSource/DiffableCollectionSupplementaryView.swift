@@ -7,18 +7,18 @@
 
 import UIKit
 
-public protocol CollectionViewSupplementaryView: UICollectionReusableView {
+public protocol ConfigurableCollectionSupplementaryView: UICollectionReusableView {
     associatedtype Model: Hashable
     func configure(with model: Model)
 }
 
 
-public protocol CollectionViewSupplementaryViewProvider {
+public protocol CollectionSupplementaryViewProvider: Hashable, Equatable {
     func registerReusableView(_ cv: UICollectionView, kind: String, indexPath: IndexPath)
     func dequeueReusableView(_ cv: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView?
 }
 
-public class CollectionSupplementaryView<C: CollectionViewSupplementaryView>: CollectionViewSupplementaryViewProvider {
+public class CollectionSupplementaryView<C: ConfigurableCollectionSupplementaryView>: CollectionSupplementaryViewProvider {
     
     private let model: C.Model
     
@@ -34,6 +34,15 @@ public class CollectionSupplementaryView<C: CollectionViewSupplementaryView>: Co
         let view = cv.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: C.name, for: indexPath) as? C
         view?.configure(with: model)
         return view
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(model.hashValue)
+    }
+    
+    public static func == <A: ConfigurableCollectionSupplementaryView, B: ConfigurableCollectionSupplementaryView>(lhs: CollectionSupplementaryView<A>, rhs: CollectionSupplementaryView<B>) -> Bool {
+        guard A.self == B.self, A.Model.self == B.Model.self else { return false }
+        return lhs.model.hashValue == rhs.model.hashValue
     }
     
 }
