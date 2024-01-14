@@ -14,7 +14,7 @@ class ViewModel {
     
     @Published private var firstSectionCount: Int = 3
     @Published private var secondSectionCount: Int = 3
-    @Published private var thirdSectionCount: Int = 3
+    @Published private var thirdSectionCount: Int = 2
     @Published private var thirdSection: Section = .thirdRow //.singleRowLayout(width: .absolute(200), height: .absolute(250))
     @Published private var addSecondSection: Bool = false
     
@@ -87,13 +87,19 @@ class ViewModel {
 
         let sectionThreeCells = Array(0..<thirdCount).map{ DiffableCollectionCell<CardCell>(.init(model: .init(section: 2, item: $0))) }
 
-        let thirdSectionLayout: NSCollectionLayoutSection = sectionLayout(section: changeThirdSection).addHeader(size: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)))
+        let thirdSectionLayout: NSCollectionLayoutSection = sectionLayout(section: changeThirdSection)
+            .addHeader(size: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)))
+            .addFooter(size: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)))
         
         let thirdSectionHeader = CollectionSupplementaryView<LayoutChangingSectionHeader>(.init(name: "Third Section", action: { [weak self] layout in
+            self?.thirdSectionCount += 1
+        }))
+        
+        let thirdFooter = CollectionSupplementaryView<SectionFooter>(.init(text:"Change Third Section Layout", action: { [weak self] in
             self?.thirdSection = changeThirdSection == .thirdCol ? .thirdRow : .thirdCol
         }))
         
-        let thirdSection = DiffableCollectionSection(changeThirdSection.rawValue, cells: sectionThreeCells, header: thirdSectionHeader, sectionLayout: thirdSectionLayout)
+        let thirdSection = DiffableCollectionSection(changeThirdSection.rawValue, cells: sectionThreeCells, header: thirdSectionHeader, footer: thirdFooter, sectionLayout: thirdSectionLayout)
       
         if addSecondSection {
             return [firstSection, secondSection, thirdSection]
