@@ -12,11 +12,11 @@ import KKit
 
 class ViewModel {
     
-    @Published private var firstSectionCount: Int = 3
-    @Published private var secondSectionCount: Int = 3
-    @Published private var thirdSectionCount: Int = 2
+    @Published private var firstSectionCount: Int = 4
+    @Published private var secondSectionCount: Int = 4
+    @Published private var thirdSectionCount: Int = 4
     @Published private var thirdSection: Section = .thirdRow //.singleRowLayout(width: .absolute(200), height: .absolute(250))
-    @Published private var addSecondSection: Bool = false
+    @Published private var addSecondSection: Bool = true
     
     struct Output {
         let section: AnyPublisher<[DiffableCollectionSection], Never>

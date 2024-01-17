@@ -6,19 +6,22 @@
 //
 
 import UIKit
+import Combine
 
 // MARK: - DataSource
 
-public class DataSource: NSObject, UICollectionViewDelegate {
+public class DataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSourcePrefetching {
     
     var sections: [DiffableCollectionSection]
     var datasource: DiffableCollectionDataSource!
+    private let prefecthIndex: PassthroughSubject<[IndexPath], Never> = .init()
+    private let scrollToEnd: PassthroughSubject<Bool, Never> = .init()
     
     init(sections: [DiffableCollectionSection]) {
         self.sections = sections
     }
     
-    func initializeDiffableDataSource(with collectionView: UICollectionView) {
+    func initializeDiffableDataSource(with collectionView: UICollectionView, completion: Callback? = nil) {
         
         // Registering Headers
         sections.enumerated().forEach { section  in
@@ -51,8 +54,9 @@ public class DataSource: NSObject, UICollectionViewDelegate {
         // Setting Layout
         collectionView.setCollectionViewLayout(setupCollectionViewLayout(), animated: false)
         collectionView.delegate = self
+        collectionView.prefetchDataSource = self
         
-        self.applySnapshot(animating: false)
+        self.applySnapshot(animating: false, completion: completion)
     }
     
     private func setupCollectionViewLayout(newSections: [DiffableCollectionSection]? = nil) -> UICollectionViewCompositionalLayout {
@@ -63,7 +67,7 @@ public class DataSource: NSObject, UICollectionViewDelegate {
         }
     }
     
-    private func  applySnapshot(animating: Bool = true) {
+    private func  applySnapshot(animating: Bool = true, completion: Callback? = nil) {
         guard let datasource else { return }
         var snapshot =  CollectionDiffableSnapshot()
 
@@ -75,12 +79,12 @@ public class DataSource: NSObject, UICollectionViewDelegate {
                                  toSection: section.id)
         }
         
-        datasource.apply(snapshot, animatingDifferences: animating)
+        datasource.apply(snapshot, animatingDifferences: animating, completion: completion)
     }
     
-    public func reloadSections(collection: UICollectionView, _ sections: [DiffableCollectionSection]) {
+    public func reloadSections(collection: UICollectionView, _ sections: [DiffableCollectionSection], completion: Callback? = nil) {
         self.sections = sections
-        applySnapshot(animating: true)
+        applySnapshot(animating: true, completion: completion)
         collection.layoutIfNeeded()
     }
     
@@ -88,6 +92,29 @@ public class DataSource: NSObject, UICollectionViewDelegate {
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         sections[indexPath.section].cells[indexPath.item].didSelect(cv: collectionView, indexPath: indexPath)
+    }
+    
+    // MARK: - UICollectionViewPrefetchDelegate
+    
+    public func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        prefecthIndex.send(indexPaths)
+        if let lastSection = sections.sorted(by: { $0.id > $1.id }).first {
+            
+            let lastItem = IndexPath(item: lastSection.cells.count - 1, section: sections.count - 1)
+//            print("(DEBUG) lastItem: ", indexPaths.contains(where: { $0 == lastItem }))
+            scrollToEnd.send(indexPaths.contains(where: { $0 == lastItem }))
+        }
+    }
+    
+    
+    // MARK: - Exposed
+    
+    var indexToPrefetch: AnyPublisher<[IndexPath], Never> {
+        prefecthIndex.eraseToAnyPublisher()
+    }
+    
+    var reachedEnd: AnyPublisher<Bool, Never> {
+        scrollToEnd.eraseToAnyPublisher()
     }
 }
 

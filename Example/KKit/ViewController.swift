@@ -42,7 +42,28 @@ class ViewController: UIViewController {
         viewModel.transform().section
             .receive(on: DispatchQueue.main)
             .sink { [weak self] sections in
-                self?.collectionView.reloadWithDynamicSection(sections: sections)
+                self?.collectionView.reloadWithDynamicSection(sections: sections) {
+                    self?.afterReloading()
+                }
+            }
+            .store(in: &bag)
+    }
+    
+    private func afterReloading() {
+        collectionView.prefetchIndexPath?
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink {
+                print("(DEBUG) indexPath: ", $0)
+            }
+            .store(in: &bag)
+        
+        collectionView.reachedEnd?
+            .filter({ $0 })
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                print("(DEBUG) reachedEnd!")
             }
             .store(in: &bag)
     }

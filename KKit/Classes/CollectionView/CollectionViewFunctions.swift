@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 extension UICollectionView {
     
@@ -30,16 +31,23 @@ public extension UICollectionView {
         set { Self.dynamicDataSourceObject[self] = newValue }
     }
     
+    var prefetchIndexPath: AnyPublisher<[IndexPath], Never>? {
+        dynamicDataSource?.indexToPrefetch
+    }
     
-    func reloadWithDynamicSection(sections: [DiffableCollectionSection]) {
+    var reachedEnd: AnyPublisher<Bool, Never>? {
+        dynamicDataSource?.reachedEnd
+    }
+    
+    func reloadWithDynamicSection(sections: [DiffableCollectionSection], completion: Callback? = nil) {
         
         if let source = self.dynamicDataSource {
-            source.reloadSections(collection: self, sections)
+            source.reloadSections(collection: self, sections, completion: completion)
             return
         }
         
         self.dynamicDataSource = DataSource(sections: sections)
-        dynamicDataSource!.initializeDiffableDataSource(with: self)
+        dynamicDataSource!.initializeDiffableDataSource(with: self, completion: completion)
     }
 }
 
