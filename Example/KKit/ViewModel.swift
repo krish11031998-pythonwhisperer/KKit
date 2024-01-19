@@ -58,7 +58,7 @@ class ViewModel {
         let cells = Array(0..<firstCount).map{ DiffableCollectionCell<TestCell>(.init(model: .init(section: 0, item: $0))) }
 
         let firstSectionLayout: NSCollectionLayoutSection = sectionLayout(section: .first)
-            .addHeader(size: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)))
+            .addHeader(size: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)), pinHeader: true)
             .addFooter(size: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)))
      
         let header = CollectionSupplementaryView<SectionHeader>(.init(name: "First Section", action: { [weak self] in

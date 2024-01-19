@@ -48,6 +48,7 @@ class SectionHeader: UICollectionReusableView, ConfigurableCollectionSupplementa
         
         addSubview(stack)
         stack.fillSuperview()
+        stack.backgroundColor = .white
     }
     
     @objc
