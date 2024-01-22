@@ -55,13 +55,14 @@ public class DiffableCollectionCell<Cell: DiffableConfigurableCollectionCell>: D
         self.model = model
     }
     
-    public func cell(cv: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell: Cell = cv.dequeueCell(indexPath: indexPath) else {
-            return .init()
+    public var cellRegisteration: UICollectionView.CellRegistration = {
+        UICollectionView.CellRegistration<Cell, Cell.Model> { cell, indexPath, item in
+            cell.configure(with: item)
         }
-        
-        cell.configure(with: model)
-        return cell
+    }()
+    
+    public func cell(cv: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        return cv.dequeueConfiguredReusableCell(using: cellRegisteration, for: indexPath, item: model)
     }
     
     public func didSelect(cv: UICollectionView, indexPath: IndexPath) {
@@ -89,10 +90,14 @@ public class DiffableCollectionItem<View: ConfigurableView>: DiffableCollectionC
         self.model = model
     }
     
+    public var cellRegisteration: UICollectionView.CellRegistration = {
+        return UICollectionView.CellRegistration<UICollectionViewCell, View.Model> { cell, indexPath, item in
+            cell.contentConfiguration = View.createContent(with: item)
+        }
+    }()
+    
     public func cell(cv: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = cv.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.contentConfiguration = View.createContent(with: model)
-        return cell
+        return cv.dequeueConfiguredReusableCell(using: cellRegisteration, for: indexPath, item: model)
     }
     
     public func didSelect(cv: UICollectionView, indexPath: IndexPath) {

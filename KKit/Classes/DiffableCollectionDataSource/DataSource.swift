@@ -101,7 +101,6 @@ public class DataSource: NSObject, UICollectionViewDelegate, UICollectionViewDat
         if let lastSection = sections.sorted(by: { $0.id > $1.id }).first {
             
             let lastItem = IndexPath(item: lastSection.cells.count - 1, section: sections.count - 1)
-//            print("(DEBUG) lastItem: ", indexPaths.contains(where: { $0 == lastItem }))
             scrollToEnd.send(indexPaths.contains(where: { $0 == lastItem }))
         }
     }

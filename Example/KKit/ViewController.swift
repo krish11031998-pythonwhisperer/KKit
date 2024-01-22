@@ -19,22 +19,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        loadCollection()
         setupObservers()
     }
     private func setupView() {
         view.addSubview(collectionView)
         collectionView
             .pinAllAnchors()
-    }
-    
-    private func loadCollection() {
-        
-        // TestCell Section
-        collectionView.register(TestCell.self, forCellWithReuseIdentifier: TestCell.cellName)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-        collectionView.register(CardCell.self, forCellWithReuseIdentifier: CardCell.cellName)
-        
     }
     
     private func setupObservers() {
