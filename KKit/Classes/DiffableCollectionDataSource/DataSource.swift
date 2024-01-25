@@ -12,6 +12,8 @@ import Combine
 
 public class DataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSourcePrefetching {
     
+    private var cellRegistrations: [String] = []
+    
     var sections: [DiffableCollectionSection]
     var datasource: DiffableCollectionDataSource!
     private let prefecthIndex: PassthroughSubject<[IndexPath], Never> = .init()
@@ -25,6 +27,7 @@ public class DataSource: NSObject, UICollectionViewDelegate, UICollectionViewDat
         
         // Registering Headers
         sections.enumerated().forEach { section  in
+            section.element.registerCells(collectionView: collectionView, cellRegistrationsMap: &cellRegistrations)
             section.element.header?.registerReusableView(collectionView, kind: UICollectionView.elementKindSectionHeader, indexPath: .init(item: 0, section: section.offset))
             section.element.footer?.registerReusableView(collectionView, kind: UICollectionView.elementKindSectionFooter, indexPath: .init(item: 0, section: section.offset))
         }
@@ -84,8 +87,15 @@ public class DataSource: NSObject, UICollectionViewDelegate, UICollectionViewDat
     
     public func reloadSections(collection: UICollectionView, _ sections: [DiffableCollectionSection], completion: Callback? = nil) {
         self.sections = sections
+        registerCells(collectionView: collection)
         applySnapshot(animating: true, completion: completion)
         collection.layoutIfNeeded()
+    }
+    
+    private func registerCells(collectionView: UICollectionView) {
+        sections.forEach { section in
+            section.registerCells(collectionView: collectionView, cellRegistrationsMap: &cellRegistrations)
+        }
     }
     
     // MARK: - UICollectionViewDelegate

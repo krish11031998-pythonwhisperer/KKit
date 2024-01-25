@@ -50,6 +50,7 @@
 		EF81DB5C2B424D640068E16F /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB5B2B424D640068E16F /* ConfigurableView.swift */; };
 		EF81DB5F2B424EB10068E16F /* ConfigurableUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB5E2B424EB10068E16F /* ConfigurableUIView.swift */; };
 		EF81DB612B42502F0068E16F /* ConfigurableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB602B42502F0068E16F /* ConfigurableElement.swift */; };
+		EFBF81632B630862002329C2 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBF81622B630862002329C2 /* ArrayExtension.swift */; };
 		EFDDF3C72B521DA700B2ED4C /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDDF3C62B521DA700B2ED4C /* DataSource.swift */; };
 /* End PBXBuildFile section */
 
@@ -136,6 +137,7 @@
 		EF81DB5B2B424D640068E16F /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
 		EF81DB5E2B424EB10068E16F /* ConfigurableUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableUIView.swift; sourceTree = "<group>"; };
 		EF81DB602B42502F0068E16F /* ConfigurableElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableElement.swift; sourceTree = "<group>"; };
+		EFBF81622B630862002329C2 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		EFDDF3C62B521DA700B2ED4C /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		F16E2852D9A84951CE510C142CEB75C3 /* Pods-KKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -336,6 +338,7 @@
 			children = (
 				EF4380502B3C5851001D3616 /* Callback.swift */,
 				EF81DB502B3EDBCB0068E16F /* Object.swift */,
+				EFBF81622B630862002329C2 /* ArrayExtension.swift */,
 			);
 			name = Misc;
 			path = KKit/Classes/Misc;
@@ -594,6 +597,7 @@
 				EF4380742B3C5851001D3616 /* UIView+General.swift in Sources */,
 				EF3FEBD22B4B33AD006ADB10 /* DiffableCollectionSupplementaryView.swift in Sources */,
 				EF81DB612B42502F0068E16F /* ConfigurableElement.swift in Sources */,
+				EFBF81632B630862002329C2 /* ArrayExtension.swift in Sources */,
 				EFDDF3C72B521DA700B2ED4C /* DataSource.swift in Sources */,
 				EF4380832B3C6374001D3616 /* Double.swift in Sources */,
 				EF43806E2B3C5851001D3616 /* CGRect.swift in Sources */,
