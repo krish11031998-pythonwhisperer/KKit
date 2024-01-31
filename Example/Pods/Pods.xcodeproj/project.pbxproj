@@ -50,6 +50,11 @@
 		EF81DB5C2B424D640068E16F /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB5B2B424D640068E16F /* ConfigurableView.swift */; };
 		EF81DB5F2B424EB10068E16F /* ConfigurableUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB5E2B424EB10068E16F /* ConfigurableUIView.swift */; };
 		EF81DB612B42502F0068E16F /* ConfigurableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB602B42502F0068E16F /* ConfigurableElement.swift */; };
+		EF9EC8332B69F26400905C7B /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC82B2B69F26400905C7B /* Animation.swift */; };
+		EF9EC8342B69F26400905C7B /* CALayer+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC82C2B69F26400905C7B /* CALayer+Animation.swift */; };
+		EF9EC8352B69F26400905C7B /* Publishers+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC82E2B69F26400905C7B /* Publishers+Extension.swift */; };
+		EF9EC8362B69F26400905C7B /* ObjectError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC8302B69F26400905C7B /* ObjectError.swift */; };
+		EF9EC8372B69F26400905C7B /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC8322B69F26400905C7B /* UIImageView+Extension.swift */; };
 		EFBF81632B630862002329C2 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBF81622B630862002329C2 /* ArrayExtension.swift */; };
 		EFDDF3C72B521DA700B2ED4C /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDDF3C62B521DA700B2ED4C /* DataSource.swift */; };
 /* End PBXBuildFile section */
@@ -137,6 +142,11 @@
 		EF81DB5B2B424D640068E16F /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
 		EF81DB5E2B424EB10068E16F /* ConfigurableUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableUIView.swift; sourceTree = "<group>"; };
 		EF81DB602B42502F0068E16F /* ConfigurableElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableElement.swift; sourceTree = "<group>"; };
+		EF9EC82B2B69F26400905C7B /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		EF9EC82C2B69F26400905C7B /* CALayer+Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Animation.swift"; sourceTree = "<group>"; };
+		EF9EC82E2B69F26400905C7B /* Publishers+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publishers+Extension.swift"; sourceTree = "<group>"; };
+		EF9EC8302B69F26400905C7B /* ObjectError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectError.swift; sourceTree = "<group>"; };
+		EF9EC8322B69F26400905C7B /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		EFBF81622B630862002329C2 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		EFDDF3C62B521DA700B2ED4C /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		F16E2852D9A84951CE510C142CEB75C3 /* Pods-KKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KKit_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -183,6 +193,10 @@
 		1E128F5123F19BA261EA5436181A81EA /* KKit */ = {
 			isa = PBXGroup;
 			children = (
+				EF9EC82A2B69F26400905C7B /* Animation */,
+				EF9EC82D2B69F26400905C7B /* Combine */,
+				EF9EC82F2B69F26400905C7B /* Error */,
+				EF9EC8312B69F26400905C7B /* UIImageView */,
 				EF3FEBCB2B4B33AD006ADB10 /* CollectionLayouts */,
 				EF3FEBCF2B4B33AD006ADB10 /* CollectionView */,
 				EF3FEBC62B4B33AD006ADB10 /* DiffableCollectionDataSource */,
@@ -407,6 +421,43 @@
 			path = Configurable;
 			sourceTree = "<group>";
 		};
+		EF9EC82A2B69F26400905C7B /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				EF9EC82B2B69F26400905C7B /* Animation.swift */,
+				EF9EC82C2B69F26400905C7B /* CALayer+Animation.swift */,
+			);
+			name = Animation;
+			path = KKit/Classes/Animation;
+			sourceTree = "<group>";
+		};
+		EF9EC82D2B69F26400905C7B /* Combine */ = {
+			isa = PBXGroup;
+			children = (
+				EF9EC82E2B69F26400905C7B /* Publishers+Extension.swift */,
+			);
+			name = Combine;
+			path = KKit/Classes/Combine;
+			sourceTree = "<group>";
+		};
+		EF9EC82F2B69F26400905C7B /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				EF9EC8302B69F26400905C7B /* ObjectError.swift */,
+			);
+			name = Error;
+			path = KKit/Classes/Error;
+			sourceTree = "<group>";
+		};
+		EF9EC8312B69F26400905C7B /* UIImageView */ = {
+			isa = PBXGroup;
+			children = (
+				EF9EC8322B69F26400905C7B /* UIImageView+Extension.swift */,
+			);
+			name = UIImageView;
+			path = KKit/Classes/UIImageView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -580,7 +631,9 @@
 				EF81DB5C2B424D640068E16F /* ConfigurableView.swift in Sources */,
 				EF43806A2B3C5851001D3616 /* CGSize.swift in Sources */,
 				EF43807A2B3C5851001D3616 /* StackView.swift in Sources */,
+				EF9EC8362B69F26400905C7B /* ObjectError.swift in Sources */,
 				EF3FEBD82B4B33AD006ADB10 /* NSLayoutSection+SupplementaryItems.swift in Sources */,
+				EF9EC8332B69F26400905C7B /* Animation.swift in Sources */,
 				EF4380702B3C5851001D3616 /* CustomFonts.swift in Sources */,
 				EF3FEBD92B4B33AD006ADB10 /* CollectionViewFunctions.swift in Sources */,
 				20FC31F3D63A416ED719C38F11A6514B /* KKit-dummy.m in Sources */,
@@ -595,7 +648,10 @@
 				EF3FEBD52B4B33AD006ADB10 /* DiffableCollectionCell.swift in Sources */,
 				EF43806F2B3C5851001D3616 /* UIEdgeInsets.swift in Sources */,
 				EF4380742B3C5851001D3616 /* UIView+General.swift in Sources */,
+				EF9EC8372B69F26400905C7B /* UIImageView+Extension.swift in Sources */,
 				EF3FEBD22B4B33AD006ADB10 /* DiffableCollectionSupplementaryView.swift in Sources */,
+				EF9EC8352B69F26400905C7B /* Publishers+Extension.swift in Sources */,
+				EF9EC8342B69F26400905C7B /* CALayer+Animation.swift in Sources */,
 				EF81DB612B42502F0068E16F /* ConfigurableElement.swift in Sources */,
 				EFBF81632B630862002329C2 /* ArrayExtension.swift in Sources */,
 				EFDDF3C72B521DA700B2ED4C /* DataSource.swift in Sources */,
