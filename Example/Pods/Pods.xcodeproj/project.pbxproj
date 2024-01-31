@@ -55,6 +55,10 @@
 		EF9EC8352B69F26400905C7B /* Publishers+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC82E2B69F26400905C7B /* Publishers+Extension.swift */; };
 		EF9EC8362B69F26400905C7B /* ObjectError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC8302B69F26400905C7B /* ObjectError.swift */; };
 		EF9EC8372B69F26400905C7B /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC8322B69F26400905C7B /* UIImageView+Extension.swift */; };
+		EF9EC83D2B69F8E900905C7B /* UIButton+Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC8392B69F8E900905C7B /* UIButton+Publishers.swift */; };
+		EF9EC83E2B69F8E900905C7B /* UIControl+Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC83A2B69F8E900905C7B /* UIControl+Publishers.swift */; };
+		EF9EC83F2B69F8E900905C7B /* UITextField+Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC83B2B69F8E900905C7B /* UITextField+Publishers.swift */; };
+		EF9EC8402B69F8E900905C7B /* withLatestFrom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC83C2B69F8E900905C7B /* withLatestFrom.swift */; };
 		EFBF81632B630862002329C2 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBF81622B630862002329C2 /* ArrayExtension.swift */; };
 		EFDDF3C72B521DA700B2ED4C /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDDF3C62B521DA700B2ED4C /* DataSource.swift */; };
 /* End PBXBuildFile section */
@@ -147,6 +151,10 @@
 		EF9EC82E2B69F26400905C7B /* Publishers+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publishers+Extension.swift"; sourceTree = "<group>"; };
 		EF9EC8302B69F26400905C7B /* ObjectError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectError.swift; sourceTree = "<group>"; };
 		EF9EC8322B69F26400905C7B /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		EF9EC8392B69F8E900905C7B /* UIButton+Publishers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Publishers.swift"; sourceTree = "<group>"; };
+		EF9EC83A2B69F8E900905C7B /* UIControl+Publishers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+Publishers.swift"; sourceTree = "<group>"; };
+		EF9EC83B2B69F8E900905C7B /* UITextField+Publishers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Publishers.swift"; sourceTree = "<group>"; };
+		EF9EC83C2B69F8E900905C7B /* withLatestFrom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = withLatestFrom.swift; sourceTree = "<group>"; };
 		EFBF81622B630862002329C2 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		EFDDF3C62B521DA700B2ED4C /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		F16E2852D9A84951CE510C142CEB75C3 /* Pods-KKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KKit_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -434,7 +442,7 @@
 		EF9EC82D2B69F26400905C7B /* Combine */ = {
 			isa = PBXGroup;
 			children = (
-				EF9EC82E2B69F26400905C7B /* Publishers+Extension.swift */,
+				EF9EC8382B69F8CB00905C7B /* Publisher */,
 			);
 			name = Combine;
 			path = KKit/Classes/Combine;
@@ -456,6 +464,18 @@
 			);
 			name = UIImageView;
 			path = KKit/Classes/UIImageView;
+			sourceTree = "<group>";
+		};
+		EF9EC8382B69F8CB00905C7B /* Publisher */ = {
+			isa = PBXGroup;
+			children = (
+				EF9EC8392B69F8E900905C7B /* UIButton+Publishers.swift */,
+				EF9EC83A2B69F8E900905C7B /* UIControl+Publishers.swift */,
+				EF9EC83B2B69F8E900905C7B /* UITextField+Publishers.swift */,
+				EF9EC83C2B69F8E900905C7B /* withLatestFrom.swift */,
+				EF9EC82E2B69F26400905C7B /* Publishers+Extension.swift */,
+			);
+			path = Publisher;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -618,11 +638,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF9EC83E2B69F8E900905C7B /* UIControl+Publishers.swift in Sources */,
 				EF4380752B3C5851001D3616 /* UIView+Helpers.swift in Sources */,
 				EF4380722B3C5851001D3616 /* RenderableText.swift in Sources */,
 				EF4380772B3C5851001D3616 /* UIView+Gesture.swift in Sources */,
 				EF4380762B3C5851001D3616 /* UIView+Builders.swift in Sources */,
 				EF43806D2B3C5851001D3616 /* CGFloat.swift in Sources */,
+				EF9EC83D2B69F8E900905C7B /* UIButton+Publishers.swift in Sources */,
 				EF4380692B3C5851001D3616 /* Callback.swift in Sources */,
 				EF4380782B3C5851001D3616 /* UIView+GraphicRenderer.swift in Sources */,
 				EF43807B2B3C5851001D3616 /* UIStackView.swift in Sources */,
@@ -632,6 +654,7 @@
 				EF43806A2B3C5851001D3616 /* CGSize.swift in Sources */,
 				EF43807A2B3C5851001D3616 /* StackView.swift in Sources */,
 				EF9EC8362B69F26400905C7B /* ObjectError.swift in Sources */,
+				EF9EC8402B69F8E900905C7B /* withLatestFrom.swift in Sources */,
 				EF3FEBD82B4B33AD006ADB10 /* NSLayoutSection+SupplementaryItems.swift in Sources */,
 				EF9EC8332B69F26400905C7B /* Animation.swift in Sources */,
 				EF4380702B3C5851001D3616 /* CustomFonts.swift in Sources */,
@@ -639,6 +662,7 @@
 				20FC31F3D63A416ED719C38F11A6514B /* KKit-dummy.m in Sources */,
 				EF43807C2B3C5851001D3616 /* ViewHeiarchy.swift in Sources */,
 				EF81DB5F2B424EB10068E16F /* ConfigurableUIView.swift in Sources */,
+				EF9EC83F2B69F8E900905C7B /* UITextField+Publishers.swift in Sources */,
 				EF4380712B3C5851001D3616 /* NSAttributedString+Utils.swift in Sources */,
 				EF43806C2B3C5851001D3616 /* CGPoint.swift in Sources */,
 				EF3FEBD42B4B33AD006ADB10 /* DiffableCollectionSection.swift in Sources */,
