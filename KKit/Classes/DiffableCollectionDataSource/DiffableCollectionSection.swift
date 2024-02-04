@@ -36,7 +36,7 @@ public class DiffableCollectionSection: Hashable, Identifiable {
         lhs.id == rhs.id
     }
     
-    public func registerCells(collectionView: UICollectionView, cellRegistrationsMap: inout [String]) {
+    public func registerCells(collectionView: UICollectionView, cellRegistrationsMap: inout Set<String>) {
         cells.forEach { cell in
             cell.register(cv: collectionView, registration: &cellRegistrationsMap)
         }

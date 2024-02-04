@@ -20,7 +20,7 @@ public protocol DiffableCollectionCellProviderType: Hashable, AnyObject {
     func cell(cv: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell
     func didSelect(cv: UICollectionView, indexPath: IndexPath)
     var asCellItem: DiffableCollectionCellItem { get }
-    func register(cv: UICollectionView, registration: inout [String])
+    func register(cv: UICollectionView, registration: inout Set<String>)
 }
 
 public typealias DiffableCollectionCellProvider = any DiffableCollectionCellProviderType
@@ -84,10 +84,10 @@ public class DiffableCollectionCell<Cell: DiffableConfigurableCollectionCell>: D
     
     public var asCellItem: DiffableCollectionCellItem { .view(self) }
     
-    public func register(cv: UICollectionView, registration: inout [String]) {
+    public func register(cv: UICollectionView, registration: inout Set<String>) {
         guard (registration.first(where: { $0 == Cell.cellName }) == nil) else { return }
         cv.register(Cell.self, forCellWithReuseIdentifier: Cell.cellName)
-        registration.append(Cell.cellName)
+        registration.insert(Cell.cellName)
     }
 }
 
@@ -103,6 +103,9 @@ public class DiffableCollectionItem<View: ConfigurableView>: DiffableCollectionC
     
     public func cell(cv: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         let cell = cv.dequeueReusableCell(withReuseIdentifier: cellName, for: indexPath)
+        if cell.contentConfiguration != nil {
+            cell.contentConfiguration = nil
+        }
         cell.contentConfiguration = View.createContent(with: model)
         return cell
     }
@@ -124,9 +127,9 @@ public class DiffableCollectionItem<View: ConfigurableView>: DiffableCollectionC
     
     private var cellName: String { "\(View.viewName)Cell" }
     
-    public func register(cv: UICollectionView, registration: inout [String]) {
+    public func register(cv: UICollectionView, registration: inout Set<String>) {
         guard (registration.first(where: { $0 == cellName }) == nil) else { return }
         cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellName)
-        registration.append(cellName)
+        registration.insert(cellName)
     }
 }

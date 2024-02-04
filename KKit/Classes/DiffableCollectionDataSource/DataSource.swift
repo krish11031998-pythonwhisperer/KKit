@@ -12,7 +12,7 @@ import Combine
 
 public class DataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSourcePrefetching {
     
-    private var cellRegistrations: [String] = []
+    private var cellRegistrations: Set<String> = .init()
     
     var sections: [DiffableCollectionSection]
     var datasource: DiffableCollectionDataSource!
