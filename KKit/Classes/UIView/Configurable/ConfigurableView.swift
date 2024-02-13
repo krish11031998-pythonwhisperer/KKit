@@ -16,3 +16,8 @@ import SwiftUI
 //}
 
 public typealias ConfigurableView = View & ConfigurableElement
+
+public extension ConfigurableElement where Self: View {
+    func configure(with model: Model) {
+    }
+}

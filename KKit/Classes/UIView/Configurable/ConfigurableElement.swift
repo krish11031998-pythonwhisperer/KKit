@@ -12,6 +12,7 @@ import Foundation
 
 public protocol ConfigurableElement {
     associatedtype Model: Hashable
+    func configure(with model: Model)
     static func createContent(with model: Model) -> UIContentConfiguration
     static var viewName: String { get }
     

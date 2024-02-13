@@ -92,6 +92,47 @@ public class DiffableCollectionCell<Cell: DiffableConfigurableCollectionCell>: D
 }
 
 
+// MARK: - DiffableCollectionCellView
+
+public class DiffableCollectionCellView<View: ConfigurableUIView>: DiffableCollectionCellProviderType {
+    
+    private let model: View.Model
+    
+    public init(model: View.Model) {
+        self.model = model
+    }
+    
+    public func cell(cv: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = cv.dequeueReusableCell(withReuseIdentifier: View.viewName, for: indexPath)
+        let cellView = View()
+        cellView.configure(with: model)
+        cell.contentView.addSubview(cellView)
+        cellView.fillSuperview()
+        return cell
+    }
+    
+    public func didSelect(cv: UICollectionView, indexPath: IndexPath) {
+        guard let action = (model as? ActionProvider)?.action else { return }
+        action()
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(model.hashValue)
+    }
+    
+    public static func == (lhs: DiffableCollectionCellView<View>, rhs: DiffableCollectionCellView<View>) -> Bool {
+        lhs.model == rhs.model
+    }
+    
+    public var asCellItem: DiffableCollectionCellItem { .view(self) }
+    
+    public func register(cv: UICollectionView, registration: inout Set<String>) {
+        guard (registration.first(where: { $0 == View.cellName }) == nil) else { return }
+        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: View.viewName)
+        registration.insert(View.cellName)
+    }
+}
+
 // MARK: - DiffableCollectionItem
 
 public class DiffableCollectionItem<View: ConfigurableView>: DiffableCollectionCellProviderType {

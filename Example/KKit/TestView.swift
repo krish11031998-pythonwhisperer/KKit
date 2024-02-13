@@ -88,6 +88,9 @@ class TestView: ConfigurableUIView {
     }
     
     static var viewName: String { name }
+    
+    func configure(with model: TestHashableModel) {
+    }
 }
 
 typealias TestCell = CollectionCellBuilder<TestView>
