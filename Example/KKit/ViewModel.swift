@@ -17,6 +17,7 @@ class ViewModel {
     @Published private var thirdSectionCount: Int = 4
     @Published private var thirdSection: Section = .thirdRow //.singleRowLayout(width: .absolute(200), height: .absolute(250))
     @Published private var addSecondSection: Bool = true
+    @Published private var reloadThirdSection: Bool = false
     
     struct Output {
         let section: AnyPublisher<[DiffableCollectionSection], Never>
@@ -29,10 +30,11 @@ class ViewModel {
     func transform() -> Output {
         let sections: AnyPublisher<[DiffableCollectionSection], Never> = Publishers.CombineLatest4($firstSectionCount, $secondSectionCount, $thirdSectionCount, $addSecondSection)
             .combineLatest($thirdSection)
-            .map({ ($0.0, $0.1, $0.2, $0.3, $1 )})
+            .combineLatest($reloadThirdSection)
+            .map({ ($0.0.0, $0.0.1, $0.0.2, $0.0.3, $0.1, $1 )})
             .map({ [weak self] in
                 guard let self else { return [] }
-                return self.sectionBuilder(firstCount: $0.0, secondCount: $0.1, thirdCount: $0.2, addSecondSection: $0.3, changeThirdSection: $0.4)
+                return self.sectionBuilder(firstCount: $0.0, secondCount: $0.1, thirdCount: $0.2, addSecondSection: $0.3, changeThirdSection: $0.4, reloadThirdSection: $0.5)
             })
             .eraseToAnyPublisher()
         return .init(section: sections)
@@ -51,7 +53,7 @@ class ViewModel {
         }
     }
     
-    private func sectionBuilder(firstCount: Int, secondCount: Int, thirdCount: Int, addSecondSection: Bool, changeThirdSection: Section) -> [DiffableCollectionSection] {
+    private func sectionBuilder(firstCount: Int, secondCount: Int, thirdCount: Int, addSecondSection: Bool, changeThirdSection: Section, reloadThirdSection: Bool) -> [DiffableCollectionSection] {
         
         // MARK: First Section
 
@@ -85,14 +87,14 @@ class ViewModel {
         
         // MARK: ThirdSection
 
-        let sectionThreeCells = Array(0..<thirdCount).map{ DiffableCollectionCell<CardCell>(.init(model: .init(section: 2, item: $0))) }
+        let sectionThreeCells = Array(0..<thirdCount).map{ DiffableCollectionCell<CardCell>(.init(model: .init(section: 2, item: $0, color: reloadThirdSection ? .blue : .red))) }
 
         let thirdSectionLayout: NSCollectionLayoutSection = sectionLayout(section: changeThirdSection)
             .addHeader(size: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)))
             .addFooter(size: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)))
         
         let thirdSectionHeader = CollectionSupplementaryView<LayoutChangingSectionHeader>(.init(name: "Third Section", action: { [weak self] layout in
-            self?.thirdSectionCount += 1
+            self?.reloadThirdSection.toggle()
         }))
         
         let thirdFooter = CollectionSupplementaryView<SectionFooter>(.init(text:"Change Third Section Layout", action: { [weak self] in

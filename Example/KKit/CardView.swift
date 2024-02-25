@@ -11,9 +11,23 @@ import KKit
 
 struct CardView: ConfigurableView {
     
-    private let model: TestHashableModel
+    private let model: Model
     
-    init(model: TestHashableModel) {
+    struct Model: Hashable {
+        let section: Int
+        let item: Int
+        let id: Int
+        let color: Color
+        
+        init(section: Int, item: Int, color: Color) {
+            self.section = section
+            self.item = item
+            self.id = section * 10 + item
+            self.color = color
+        }
+    }
+    
+    init(model: Model) {
         self.model = model
     }
     
@@ -33,12 +47,12 @@ struct CardView: ConfigurableView {
         }
         .padding(.all, 16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background { Color.red }
+        .background { model.color }
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 0)
     }
     
-    static func createContent(with model: TestHashableModel) -> UIContentConfiguration {
+    static func createContent(with model: Model) -> UIContentConfiguration {
         let view = CardView(model: model)
         return UIHostingConfiguration {
             view
@@ -51,6 +65,6 @@ struct CardView: ConfigurableView {
 typealias CardCell = CollectionCellBuilder<CardView>
 
 #Preview {
-    CardView(model: .init(section: 0, item: 0))
+    CardView(model: .init(section: 0, item: 1, color: .red))
         .frame(width: 200, height: 275, alignment: .center)
 }

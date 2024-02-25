@@ -145,6 +145,7 @@ public extension RenderableText {
     }
 }
 
+
 //MARK: - Renderable+Dimension
 public extension RenderableText where Self == String {
     func height(withWidth width: CGFloat, font: UIFont) -> CGFloat {

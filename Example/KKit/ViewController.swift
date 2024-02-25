@@ -29,9 +29,12 @@ class ViewController: UIViewController {
     
     private func setupObservers() {
         
-        viewModel.transform().section
+        let output = viewModel.transform()
+        
+        output.section
             .receive(on: DispatchQueue.main)
             .sink { [weak self] sections in
+                print("(DEBUG) reloadSection")
                 self?.collectionView.reloadWithDynamicSection(sections: sections) {
                     self?.afterReloading()
                 }

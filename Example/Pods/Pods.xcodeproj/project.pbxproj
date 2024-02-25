@@ -50,11 +50,14 @@
 		EF81DB5C2B424D640068E16F /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB5B2B424D640068E16F /* ConfigurableView.swift */; };
 		EF81DB5F2B424EB10068E16F /* ConfigurableUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB5E2B424EB10068E16F /* ConfigurableUIView.swift */; };
 		EF81DB612B42502F0068E16F /* ConfigurableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81DB602B42502F0068E16F /* ConfigurableElement.swift */; };
+		EF94C4482B7C0FAD0084169F /* ImageSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF94C4472B7C0FAD0084169F /* ImageSource.swift */; };
+		EF94C44A2B7C0FE80084169F /* ImageStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF94C4492B7C0FE80084169F /* ImageStyling.swift */; };
+		EF94C44C2B7C106B0084169F /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF94C44B2B7C106B0084169F /* UIImageView+Extension.swift */; };
 		EF9EC8332B69F26400905C7B /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC82B2B69F26400905C7B /* Animation.swift */; };
 		EF9EC8342B69F26400905C7B /* CALayer+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC82C2B69F26400905C7B /* CALayer+Animation.swift */; };
 		EF9EC8352B69F26400905C7B /* Publishers+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC82E2B69F26400905C7B /* Publishers+Extension.swift */; };
 		EF9EC8362B69F26400905C7B /* ObjectError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC8302B69F26400905C7B /* ObjectError.swift */; };
-		EF9EC8372B69F26400905C7B /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC8322B69F26400905C7B /* UIImageView+Extension.swift */; };
+		EF9EC8372B69F26400905C7B /* UIImageView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC8322B69F26400905C7B /* UIImageView+Utils.swift */; };
 		EF9EC83D2B69F8E900905C7B /* UIButton+Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC8392B69F8E900905C7B /* UIButton+Publishers.swift */; };
 		EF9EC83E2B69F8E900905C7B /* UIControl+Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC83A2B69F8E900905C7B /* UIControl+Publishers.swift */; };
 		EF9EC83F2B69F8E900905C7B /* UITextField+Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9EC83B2B69F8E900905C7B /* UITextField+Publishers.swift */; };
@@ -146,11 +149,14 @@
 		EF81DB5B2B424D640068E16F /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
 		EF81DB5E2B424EB10068E16F /* ConfigurableUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableUIView.swift; sourceTree = "<group>"; };
 		EF81DB602B42502F0068E16F /* ConfigurableElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableElement.swift; sourceTree = "<group>"; };
+		EF94C4472B7C0FAD0084169F /* ImageSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSource.swift; sourceTree = "<group>"; };
+		EF94C4492B7C0FE80084169F /* ImageStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStyling.swift; sourceTree = "<group>"; };
+		EF94C44B2B7C106B0084169F /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		EF9EC82B2B69F26400905C7B /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		EF9EC82C2B69F26400905C7B /* CALayer+Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Animation.swift"; sourceTree = "<group>"; };
 		EF9EC82E2B69F26400905C7B /* Publishers+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publishers+Extension.swift"; sourceTree = "<group>"; };
 		EF9EC8302B69F26400905C7B /* ObjectError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectError.swift; sourceTree = "<group>"; };
-		EF9EC8322B69F26400905C7B /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		EF9EC8322B69F26400905C7B /* UIImageView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Utils.swift"; sourceTree = "<group>"; };
 		EF9EC8392B69F8E900905C7B /* UIButton+Publishers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Publishers.swift"; sourceTree = "<group>"; };
 		EF9EC83A2B69F8E900905C7B /* UIControl+Publishers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+Publishers.swift"; sourceTree = "<group>"; };
 		EF9EC83B2B69F8E900905C7B /* UITextField+Publishers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Publishers.swift"; sourceTree = "<group>"; };
@@ -460,7 +466,10 @@
 		EF9EC8312B69F26400905C7B /* UIImageView */ = {
 			isa = PBXGroup;
 			children = (
-				EF9EC8322B69F26400905C7B /* UIImageView+Extension.swift */,
+				EF9EC8322B69F26400905C7B /* UIImageView+Utils.swift */,
+				EF94C4472B7C0FAD0084169F /* ImageSource.swift */,
+				EF94C4492B7C0FE80084169F /* ImageStyling.swift */,
+				EF94C44B2B7C106B0084169F /* UIImageView+Extension.swift */,
 			);
 			name = UIImageView;
 			path = KKit/Classes/UIImageView;
@@ -640,10 +649,13 @@
 			files = (
 				EF9EC83E2B69F8E900905C7B /* UIControl+Publishers.swift in Sources */,
 				EF4380752B3C5851001D3616 /* UIView+Helpers.swift in Sources */,
+				EF94C44C2B7C106B0084169F /* UIImageView+Extension.swift in Sources */,
 				EF4380722B3C5851001D3616 /* RenderableText.swift in Sources */,
 				EF4380772B3C5851001D3616 /* UIView+Gesture.swift in Sources */,
 				EF4380762B3C5851001D3616 /* UIView+Builders.swift in Sources */,
+				EF94C44A2B7C0FE80084169F /* ImageStyling.swift in Sources */,
 				EF43806D2B3C5851001D3616 /* CGFloat.swift in Sources */,
+				EF94C4482B7C0FAD0084169F /* ImageSource.swift in Sources */,
 				EF9EC83D2B69F8E900905C7B /* UIButton+Publishers.swift in Sources */,
 				EF4380692B3C5851001D3616 /* Callback.swift in Sources */,
 				EF4380782B3C5851001D3616 /* UIView+GraphicRenderer.swift in Sources */,
@@ -672,7 +684,7 @@
 				EF3FEBD52B4B33AD006ADB10 /* DiffableCollectionCell.swift in Sources */,
 				EF43806F2B3C5851001D3616 /* UIEdgeInsets.swift in Sources */,
 				EF4380742B3C5851001D3616 /* UIView+General.swift in Sources */,
-				EF9EC8372B69F26400905C7B /* UIImageView+Extension.swift in Sources */,
+				EF9EC8372B69F26400905C7B /* UIImageView+Utils.swift in Sources */,
 				EF3FEBD22B4B33AD006ADB10 /* DiffableCollectionSupplementaryView.swift in Sources */,
 				EF9EC8352B69F26400905C7B /* Publishers+Extension.swift in Sources */,
 				EF9EC8342B69F26400905C7B /* CALayer+Animation.swift in Sources */,
