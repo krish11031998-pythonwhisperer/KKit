@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 public extension Publishers {
-    public struct WithLatestFrom<Upstream: Publisher, Other: Publisher>:
+    struct WithLatestFrom<Upstream: Publisher, Other: Publisher>:
         Publisher where Upstream.Failure == Other.Failure
     {
         // MARK: - Types
