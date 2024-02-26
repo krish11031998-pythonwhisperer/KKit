@@ -92,6 +92,25 @@ public class DataSource: NSObject, UICollectionViewDelegate, UICollectionViewDat
         collection.layoutIfNeeded()
     }
     
+    public func reloadItems(_ item: DiffableCollectionCellProvider, section: Int, index: Int) {
+        var snapshot = datasource.snapshot()
+        
+        let id = item.asCellItem
+    
+        snapshot.deleteItems([snapshot.itemIdentifiers(inSection: section)[index]])
+        if let firstId = snapshot.itemIdentifiers.first {
+            snapshot.insertItems([id], beforeItem: firstId)
+        } else {
+            snapshot.appendItems([id], toSection: section)
+        }
+        
+        
+        snapshot.reloadItems([id])
+        
+        datasource.apply(snapshot)
+    }
+    
+    
     private func registerCells(collectionView: UICollectionView) {
         sections.forEach { section in
             section.registerCells(collectionView: collectionView, cellRegistrationsMap: &cellRegistrations)

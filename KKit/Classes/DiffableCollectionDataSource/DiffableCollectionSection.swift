@@ -42,3 +42,17 @@ public class DiffableCollectionSection: Hashable, Identifiable {
         }
     }
 }
+
+
+public extension DiffableCollectionSection {
+    
+    func replaceCellWith(newCell: DiffableCollectionCellProvider) {
+        guard let idx = self.cells.firstIndex(where: { $0.asCellItem == newCell.asCellItem }) else {
+            self.cells.append(newCell)
+            return
+        }
+        
+        self.cells[idx] = newCell
+    }
+    
+}

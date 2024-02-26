@@ -49,5 +49,11 @@ public extension UICollectionView {
         self.dynamicDataSource = DataSource(sections: sections)
         dynamicDataSource!.initializeDiffableDataSource(with: self, completion: completion)
     }
+    
+    func reloadItems(_ item: DiffableCollectionCellProvider, section: Int, index: Int) {
+        guard let datasource = dynamicDataSource else  { return }
+        
+        datasource.reloadItems(item, section: section, index: index)
+    }
 }
 

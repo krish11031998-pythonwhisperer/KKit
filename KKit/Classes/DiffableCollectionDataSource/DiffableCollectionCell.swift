@@ -104,6 +104,11 @@ public class DiffableCollectionCellView<View: ConfigurableUIView>: DiffableColle
     
     public func cell(cv: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         let cell = cv.dequeueReusableCell(withReuseIdentifier: View.viewName, for: indexPath)
+        
+        if let _ = cell.contentView.subviews.first(where: { ($0 as? View) != nil }) {
+            return cell
+        }
+        
         let cellView = View()
         cellView.configure(with: model)
         cell.contentView.addSubview(cellView)
@@ -117,7 +122,7 @@ public class DiffableCollectionCellView<View: ConfigurableUIView>: DiffableColle
     }
     
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(model.hashValue)
+        hasher.combine(model)
     }
     
     public static func == (lhs: DiffableCollectionCellView<View>, rhs: DiffableCollectionCellView<View>) -> Bool {
