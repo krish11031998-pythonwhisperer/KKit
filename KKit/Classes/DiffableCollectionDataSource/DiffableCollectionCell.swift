@@ -103,7 +103,7 @@ public class DiffableCollectionCellView<View: ConfigurableUIView>: DiffableColle
     }
     
     public func cell(cv: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = cv.dequeueReusableCell(withReuseIdentifier: View.viewName, for: indexPath)
+        let cell = cv.dequeueReusableCell(withReuseIdentifier: View.cellName, for: indexPath)
         
         if let cellView = cell.contentView.subviews.first(where: { ($0 as? View) != nil }) as? View {
             cellView.configure(with: model)
@@ -134,7 +134,7 @@ public class DiffableCollectionCellView<View: ConfigurableUIView>: DiffableColle
     
     public func register(cv: UICollectionView, registration: inout Set<String>) {
         guard (registration.first(where: { $0 == View.cellName }) == nil) else { return }
-        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: View.viewName)
+        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: View.cellName)
         registration.insert(View.cellName)
     }
 }

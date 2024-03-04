@@ -110,7 +110,6 @@ public class DataSource: NSObject, UICollectionViewDelegate, UICollectionViewDat
         datasource.apply(snapshot)
     }
     
-    
     private func registerCells(collectionView: UICollectionView) {
         sections.forEach { section in
             section.registerCells(collectionView: collectionView, cellRegistrationsMap: &cellRegistrations)
