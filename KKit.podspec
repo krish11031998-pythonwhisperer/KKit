@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KKit'
-  s.version          = '1.0.5'
+  s.version          = '1.0.6'
   s.summary          = 'Simple to use UIKit Helper'
 
 # This description is used to generate tags and improve search results.

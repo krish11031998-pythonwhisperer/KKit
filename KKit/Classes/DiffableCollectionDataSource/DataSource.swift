@@ -92,20 +92,31 @@ public class DataSource: NSObject, UICollectionViewDelegate, UICollectionViewDat
         collection.layoutIfNeeded()
     }
     
-    public func reloadItems(_ item: DiffableCollectionCellProvider, section: Int, index: Int) {
+    public func reloadItems(_ item: DiffableCollectionCellProvider, section: Int, index: Int, alsoReload: Bool) {
         var snapshot = datasource.snapshot()
         
         let id = item.asCellItem
     
-        snapshot.deleteItems([snapshot.itemIdentifiers(inSection: section)[index]])
-        if let firstId = snapshot.itemIdentifiers.first {
-            snapshot.insertItems([id], beforeItem: firstId)
-        } else {
+        let itemIds = snapshot.itemIdentifiers(inSection: section)
+        snapshot.deleteItems([itemIds[index]])
+        
+        if snapshot.itemIdentifiers(inSection: section).isEmpty {
             snapshot.appendItems([id], toSection: section)
         }
         
+        if index == 0, let first = snapshot.itemIdentifiers(inSection: section).first {
+            snapshot.insertItems([id], beforeItem: first)
+            
+        } else if index == (itemIds.count - 1), let last = snapshot.itemIdentifiers(inSection: section).last {
+            snapshot.insertItems([id], beforeItem: last)
+        } else {
+            let currentId = snapshot.itemIdentifiers(inSection: section)[index]
+            snapshot.insertItems([id], beforeItem: currentId)
+        }
         
-        snapshot.reloadItems([id])
+        if alsoReload {
+            snapshot.reloadItems([id])
+        }
         
         datasource.apply(snapshot)
     }
