@@ -88,6 +88,18 @@ public extension Publisher {
             Swift.print("(ERROR ‼️) err: ", err.localizedDescription)
             errHandle?.send(customErr.localizedDescription)
             return .empty(completeImmediately: true)
-        }.eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func catchWithErrorWithNever(errHandle: PassthroughSubject<String?, Error>,
+                        withErr customErr: StandardError) -> AnyPublisher<Self.Output, Never>
+    {
+        self.catch { [weak errHandle] err -> AnyPublisher<Self.Output, Never> in
+            Swift.print("(ERROR ‼️) err: ", err.localizedDescription)
+            errHandle?.send(customErr.localizedDescription)
+            return .empty(completeImmediately: true)
+        }
+        .eraseToAnyPublisher()
     }
 }
