@@ -15,6 +15,7 @@ public enum ImageSource {
     case remote(url: String)
     case local(img: UIImage)
     case asset(asset: ImageAsset)
+    case symbol(name: String)
     case none
 }
 
@@ -65,6 +66,8 @@ extension ImageSource: Hashable {
             hasher.combine(img)
         case .asset(let asset):
             hasher.combine(asset.image)
+        case .symbol(let name):
+            hasher.combine(name)
         case .none:
             hasher.combine("none")
         }
