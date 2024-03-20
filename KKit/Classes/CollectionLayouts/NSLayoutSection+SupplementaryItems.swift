@@ -9,8 +9,10 @@ import UIKit
 
 public extension NSCollectionLayoutSection {
     
+    static let defaultHeaderSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44.0))
+    
     @discardableResult
-    func addHeader(size: NSCollectionLayoutSize, pinHeader: Bool = false) -> Self {
+    func addHeader(size: NSCollectionLayoutSize = .defaultHeaderSize, pinHeader: Bool = false) -> Self {
         let header: NSCollectionLayoutBoundarySupplementaryItem = .init(layoutSize: size, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         header.pinToVisibleBounds = pinHeader
         if self.boundarySupplementaryItems.isEmpty {
